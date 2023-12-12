@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   mediawiki:
     image: mediawiki
@@ -10,6 +11,7 @@ services:
     volumes:
       - images:/var/www/html/images
       - ./LocalSettings.php:/var/www/html/LocalSettings.php
+
   database:
     image: mariadb
     restart: always
@@ -20,30 +22,61 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
     volumes:
       - db:/var/lib/mysql
-  db:
-     image: mysql:5.7
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
-  wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
-     ports:
-       - "8081:80"
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
 
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8081:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+
+  forum_db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: forum_mysql_password
+      MYSQL_DATABASE: forum_database
+      MYSQL_USER: forum_user
+      MYSQL_PASSWORD: forum_password
+    volumes:
+      - forum_db_data:/var/lib/mysql
+    networks:
+      - my_network
+
+  forum:
+    build:
+      context: .
+      dockerfile: forum/Dockerfile
+    depends_on:
+      - forum_db
+    ports:
+      - "8082:80"
+    restart: always
+    networks:
+      - my_network
 
 volumes:
   images:
   db:
   db_data:
+  forum_db_data:
+
+networks:
+  my_network:
+

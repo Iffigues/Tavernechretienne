@@ -19,7 +19,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 
-$wgSitename = "TaverneChrétienne";
+$wgSitename = "TaverneChretienne";
 
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
@@ -61,7 +61,7 @@ $wgDBuser = "wikiuser";
 $wgDBpassword = "example";
 
 # MySQL specific settings
-$wgDBprefix = "my_wiki";
+$wgDBprefix = "wiko";
 
 # MySQL table options to use during installation or update
 $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
@@ -99,14 +99,14 @@ $wgLocaltimezone = "UTC";
 ## be publicly accessible from the web.
 #$wgCacheDirectory = "$IP/cache";
 
-$wgSecretKey = "8779340e1f637e0b01f125ad523226fb44bfbdcf6d023e8b51d5b4dae2a7c684";
+$wgSecretKey = "c8f88a672b3b41e24f912eb638175a7cdfeedf743213a8256d28565f8e39f775";
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-$wgUpgradeKey = "aa9e73679fe8f506";
+$wgUpgradeKey = "c276067f07961834";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation

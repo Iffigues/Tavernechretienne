@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /
+    RewriteRule ^forum/$ /phpBB3/ [R,L]
+
+    # Some other common settings
+    RewriteRule ^common/.* /phpBB3/ [R,L]
+    RewriteRule ^files/.* /phpBB3/ [R,L]
+    RewriteRule ^images/.* /phpBB3/ [R,L]
+    RewriteRule ^includes/.* /phpBB3/ [R,L]
+    RewriteRule ^language/.* /phpBB3/ [R,L]
+    RewriteRule ^store/.* /phpBB3/ [R,L]
+    RewriteRule ^styles/.* /phpBB3/ [R,L]
+    RewriteRule ^ucp/.* /phpBB3/ [R,L]
+    RewriteRule ^mcp/.* /phpBB3/ [R,L]
+    RewriteRule ^posting.php$ /phpBB3/ [R,L]
+    RewriteRule ^search.php$ /phpBB3/ [R,L]
+</IfModule>
+
+# Deny access to specific files and directories
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+

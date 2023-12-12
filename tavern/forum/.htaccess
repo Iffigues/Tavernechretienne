@@ -1,0 +1,4 @@
+<Directory "/path/to/forum">
+    AllowOverride All
+</Directory>
+
