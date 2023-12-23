@@ -1,0 +1,9 @@
+/* Online color */
+.online {
+    border-right: 4px solid #01AC00;
+}
+
+/* Offline color */
+.offline { 
+    border-right: 4px solid #ff0000;
+}

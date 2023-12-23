@@ -1,0 +1,123 @@
+/* Bordures Haut Contenu ================================== */
+.contenu_texte_bg {
+    padding-top: 26px;
+	color: #DAC186;
+	text-transform: uppercase;
+    font-weight: bold;
+	font-size: 10px;
+	text-shadow: 0 1px 1px #666666;
+}
+.contenu_bloc_bg {
+   background: #CFBD9E;
+   margin-left:       19px;
+   margin-right:      19px;
+   padding: 5px;
+}
+.contenu_haut_bloc_bg {
+    margin: 0px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    clear: both;
+}
+.contenu_haut_bg {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 25px;
+    padding: 0px;
+    margin: -25px 0px 0px 0px;
+    text-align: center;
+    clear: both;
+}
+.contenu_haut-gauche_bg {
+    background-image: url("./images/bg/bgtl.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    float: left;
+    width: 25px;
+    padding: 0px;
+}
+.contenu_haut-centre_bg {
+    background-image: url("./images/bg/bgtc.png");
+    height: 25px;
+    margin:    0px 25px 0px 25px;
+    width: auto;
+    padding: 0px;
+}
+.contenu_haut-droit_bg {
+    background-image: url("./images/bg/bgtr.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    float: right;
+    margin-top: -25px;
+    width: 25px;
+    padding: 0px;
+}
+/* ================================================================================ */
+/* Bordures Laterales Contenu ================================== */
+.contenu_bordure_bloc_bg {
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding: 0px;
+    max-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    clear: both;
+}
+.contenu_bloc_gauche_bg {
+    background-image: url("./images/bg/bgl.png");
+    background-repeat:   repeat-y;
+    background-position: left;
+}
+.contenu_bloc_droit_bg {
+    background-image: url("./images/bg/bgr.png");
+    background-repeat:   repeat-y;
+    background-position:right;
+}
+/* ================================================================================ */
+/* Bordures Base Contenu ================================== */
+.contenu_base_bloc_bg {
+	margin: 0px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    clear: both;
+}
+.contenu_base_bg {
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 25px;
+    padding: 0px;
+    margin: -25px 0px 0px 0px;
+    text-align: center;
+    clear: both;
+}
+.contenu_base-gauche_bg {
+    background-image: url("./images/bg/bgbl.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    float: left;
+    width: 25px;
+    padding: 0px;
+}
+.contenu_base-centre_bg {
+    background-image: url("./images/bg/bgbc.png");
+    height: 25px;
+    margin: 0px 25px 0px 25px;
+    width: auto;
+    padding: 0px;
+}
+.contenu_base-droit_bg {
+    background-image: url("./images/bg/bgbr.png");
+    background-repeat: no-repeat;
+    height: 25px;
+    float: right;
+    margin-top: -25px;
+    width: 25px;
+    padding: 0px;
+}
+/* ================================================================================ */

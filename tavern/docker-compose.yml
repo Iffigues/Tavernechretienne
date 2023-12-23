@@ -3,18 +3,21 @@ version: '3'
 services:
   mediawiki:
     image: mediawiki
-    restart: always
     ports:
       - 8080:80
     links:
       - database
+      - smtp
     volumes:
       - images:/var/www/html/images
-      - ./LocalSettings.php:/var/www/html/LocalSettings.php
+      - ./files/LocalSettings.php:/var/www/html/LocalSettings.php
+    environment:
+      - SMTP_HOST=smtp  # Set the SMTP server host
+      - SMTP_PORT=1025 
+    restart: always
 
   database:
     image: mariadb
-    restart: always
     environment:
       MYSQL_DATABASE: my_wiki
       MYSQL_USER: wikiuser
@@ -22,33 +25,36 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
     volumes:
       - db:/var/lib/mysql
+    restart: always
 
   db:
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    restart: always
 
   wordpress:
     depends_on:
       - db
+      - smtp
     image: wordpress:latest
     ports:
       - "8081:80"
-    restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
+      SMTP_HOST: smtp  # Set the SMTP server host
+      SMTP_PORT: 1025  # Set the SMTP server port
+    restart: always
 
   forum_db:
     image: mysql:8.0
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: forum_mysql_password
       MYSQL_DATABASE: forum_database
@@ -58,6 +64,7 @@ services:
       - forum_db_data:/var/lib/mysql
     networks:
       - my_network
+    restart: always
 
   forum:
     build:
@@ -67,9 +74,21 @@ services:
       - forum_db
     ports:
       - "8082:80"
-    restart: always
     networks:
       - my_network
+    environment:
+      - SMTP_HOST=smtp  # Update SMTP server host
+      - SMTP_PORT=587 
+    restart: always
+    volumes:
+      - ./modif:/modif
+
+  smtp:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"  # SMTP server
+      - "8025:8025"  # Web UI for viewing emails
+    restart: always
 
 volumes:
   images:

@@ -1,0 +1,19 @@
+
+> my-app@0.1.0 start
+> react-scripts start
+
+Starting the development server...
+
+Compiled successfully!
+
+You can now view my-app in the browser.
+
+  http://localhost:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+No issues found.

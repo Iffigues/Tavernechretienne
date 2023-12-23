@@ -11,6 +11,8 @@ RUN apt-get update \
     && apt-get install -y wget unzip \
     && rm -rf /var/lib/apt/lists/*
 
+COPY ./forum/pack /pack
+
 # Create phpBB project
 WORKDIR /var/www/html
 RUN wget -O phpBB.zip https://download.phpbb.com/pub/release/3.3/3.3.11/phpBB-3.3.11.zip \
@@ -20,6 +22,9 @@ RUN wget -O phpBB.zip https://download.phpbb.com/pub/release/3.3/3.3.11/phpBB-3.
     && chmod -R 755 phpBB3
 
 RUN mv /var/www/html/phpBB3/* /var/www/html
+
+#RUN cp /pack/languages/*  /var/www/html/language/
+RUN mv /pack/styles/* /var/www/html/styles/
 # Configure phpBB's recommended settings
 #COPY .htaccess /var/www/html/phpBB3/
 #COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
