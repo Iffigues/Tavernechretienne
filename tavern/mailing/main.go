@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"fmt"
 	"net/http"
 	"net/smtp"
@@ -22,7 +23,6 @@ func sendEmail(from, password, to, subject, body, smtpHost string, smtpPort int)
 }
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("ezez")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
     w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
@@ -31,6 +31,23 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
         return
     }
 
+
+    	from, exists := os.LookupEnv("from")
+	if !exists {
+		return
+	}
+	pwd, exists := os.LookupEnv("pwd")
+	if !exists {
+		return
+	}
+	to, exists := os.LookupEnv("to")
+	
+	if !exists {
+		return
+	}
+	
+	fmt.Println(from, to, pwd)
+	
 	if r.Method == http.MethodPost {
 		// Parse the JSON request body
 		var emailData EmailData
@@ -43,7 +60,7 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 		// Access the values from the JSON data
 		subject := emailData.Subject
 		body := emailData.Email + " \n\n"+emailData.Body
-		if ok :=sendEmail("denoyelle.boris@gmail.com", "fcqe hcfl phqj ijvn", "denoyelle.boris@gmail.com", subject, body, "smtp.gmail.com", 587); ok  != nil {
+		if ok :=sendEmail(from, pwd, to, subject, body, "smtp.gmail.com", 587); ok  != nil {
 			fmt.Println(ok)
 		}
 		fmt.Fprint(w, "Received a POST request. Email data processed successfully.")

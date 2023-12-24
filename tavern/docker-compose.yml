@@ -90,6 +90,26 @@ services:
       - "8025:8025"  # Web UI for viewing emails
     restart: always
 
+  mailing:
+   build:
+     context: .
+     dockerfile: mailing/Dockerfile
+   ports:
+     - "8086:8086"
+   restart: always
+   environment:
+     - to=denoyelle.boris@gmail.com
+     - from=denoyelle.boris@gmail.com
+     - pwd=${PASSWORD:-default_value}
+  
+  landing:
+    build:
+      context: .
+      dockerfile: landing/Dockerfile
+    ports:
+      - "80:80"
+    restart: always
+
 volumes:
   images:
   db:
